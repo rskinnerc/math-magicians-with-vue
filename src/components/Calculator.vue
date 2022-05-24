@@ -1,31 +1,32 @@
 <template>
   <ul className="calculator">
     <li className="operations">{{ calc.total }}{{ calc.operation }}{{ calc.next }}</li>
-    <li @click="handleClick('AC')">AC</li>
-    <li @click="handleClick('+/-')">+/-</li>
-    <li @click="handleClick('%')">%</li>
-    <li @click="handleClick('÷')" className="operator">÷</li>
-    <li @click="handleClick('7')">7</li>
-    <li @click="handleClick('8')">8</li>
-    <li @click="handleClick('9')">9</li>
-    <li @click="handleClick('x')" className="operator">x</li>
-    <li @click="handleClick('4')">4</li>
-    <li @click="handleClick('5')">5</li>
-    <li @click="handleClick('6')">6</li>
-    <li @click="handleClick('-')" className="operator">-</li>
-    <li @click="handleClick('1')">1</li>
-    <li @click="handleClick('2')">2</li>
-    <li @click="handleClick('3')">3</li>
-    <li @click="handleClick('+')" className="operator">+</li>
-    <li @click="handleClick('0')" className="zero">0</li>
-    <li @click="handleClick('.')">.</li>
-    <li @click="handleClick('=')" className="operator">=</li>
+      <Button :handleClick="handleClick" buttonName="AC" />
+      <Button :handleClick="handleClick" buttonName="+/-" />
+      <Button :handleClick="handleClick" buttonName="%" />
+      <Button :handleClick="handleClick" buttonName="÷" />
+      <Button :handleClick="handleClick" buttonName="7" />
+      <Button :handleClick="handleClick" buttonName="8" />
+      <Button :handleClick="handleClick" buttonName="9" />
+      <Button :handleClick="handleClick" buttonName="x" btnClass="operator" />
+      <Button :handleClick="handleClick" buttonName="4" />
+      <Button :handleClick="handleClick" buttonName="5" />
+      <Button :handleClick="handleClick" buttonName="6" />
+      <Button :handleClick="handleClick" buttonName="-" btnClass="operator" />
+      <Button :handleClick="handleClick" buttonName="1" />
+      <Button :handleClick="handleClick" buttonName="2" />
+      <Button :handleClick="handleClick" buttonName="3" />
+      <Button :handleClick="handleClick" buttonName="+" btnClass="operator" />
+      <Button :handleClick="handleClick" buttonName="0" btnClass="zero" />
+      <Button :handleClick="handleClick" buttonName="." />
+      <Button :handleClick="handleClick" buttonName="=" btnClass="operator" />
   </ul>
 </template>
 
 
 <script>
 import calculate from '../logic/calculate'
+import Button from "./Button.vue";
 
 export default {
   data() {
@@ -49,6 +50,9 @@ export default {
     handleClick(buttonName) {
       this.calc = calculate(this.calc, buttonName);
     }
+  },
+  components: {
+    Button
   }
 }
 </script>
