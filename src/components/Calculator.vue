@@ -1,27 +1,49 @@
 <template>
   <ul className="calculator">
-    <li className="operations">0</li>
-    <li>AC</li>
-    <li>+/-</li>
-    <li>%</li>
-    <li className="operator">÷</li>
-    <li>7</li>
-    <li>8</li>
-    <li>9</li>
-    <li className="operator">x</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
-    <li className="operator">-</li>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li className="operator">+</li>
-    <li className="zero">0</li>
-    <li>.</li>
-    <li className="operator">=</li>
+    <li className="operations">{{ calc.total }}{{ calc.operation }}{{ calc.next }}</li>
+    <li @click="handleClick('AC')">AC</li>
+    <li @click="handleClick('+/-')">+/-</li>
+    <li @click="handleClick('%')">%</li>
+    <li @click="handleClick('÷')" className="operator">÷</li>
+    <li @click="handleClick('7')">7</li>
+    <li @click="handleClick('8')">8</li>
+    <li @click="handleClick('9')">9</li>
+    <li @click="handleClick('x')" className="operator">x</li>
+    <li @click="handleClick('4')">4</li>
+    <li @click="handleClick('5')">5</li>
+    <li @click="handleClick('6')">6</li>
+    <li @click="handleClick('-')" className="operator">-</li>
+    <li @click="handleClick('1')">1</li>
+    <li @click="handleClick('2')">2</li>
+    <li @click="handleClick('3')">3</li>
+    <li @click="handleClick('+')" className="operator">+</li>
+    <li @click="handleClick('0')" className="zero">0</li>
+    <li @click="handleClick('.')">.</li>
+    <li @click="handleClick('=')" className="operator">=</li>
   </ul>
 </template>
+
+
+<script>
+import calculate from '../logic/calculate'
+
+export default {
+  data() {
+    return {
+      calc: {
+        total: null,
+        next: null,
+        operation: null
+      }
+    }
+  },
+  methods: {
+    handleClick(buttonName) {
+      this.calc = calculate(this.calc, buttonName);
+    }
+  }
+}
+</script>
 
 <style>
 ul.calculator {
