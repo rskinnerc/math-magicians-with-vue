@@ -37,6 +37,14 @@ export default {
       }
     }
   },
+  mounted() {
+    this.calc.total = 0;
+  },
+  updated() {
+    if (this.calc.total === null && this.calc.next === null) {
+      this.calc.total = 0;
+    }
+  },
   methods: {
     handleClick(buttonName) {
       this.calc = calculate(this.calc, buttonName);
