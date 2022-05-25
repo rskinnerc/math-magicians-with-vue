@@ -1,59 +1,52 @@
 <template>
   <ul className="calculator">
     <li className="operations">{{ calc.total }}{{ calc.operation }}{{ calc.next }}</li>
-      <Button :handleClick="handleClick" buttonName="AC" />
-      <Button :handleClick="handleClick" buttonName="+/-" />
-      <Button :handleClick="handleClick" buttonName="%" />
-      <Button :handleClick="handleClick" buttonName="÷" />
-      <Button :handleClick="handleClick" buttonName="7" />
-      <Button :handleClick="handleClick" buttonName="8" />
-      <Button :handleClick="handleClick" buttonName="9" />
-      <Button :handleClick="handleClick" buttonName="x" btnClass="operator" />
-      <Button :handleClick="handleClick" buttonName="4" />
-      <Button :handleClick="handleClick" buttonName="5" />
-      <Button :handleClick="handleClick" buttonName="6" />
-      <Button :handleClick="handleClick" buttonName="-" btnClass="operator" />
-      <Button :handleClick="handleClick" buttonName="1" />
-      <Button :handleClick="handleClick" buttonName="2" />
-      <Button :handleClick="handleClick" buttonName="3" />
-      <Button :handleClick="handleClick" buttonName="+" btnClass="operator" />
-      <Button :handleClick="handleClick" buttonName="0" btnClass="zero" />
-      <Button :handleClick="handleClick" buttonName="." />
-      <Button :handleClick="handleClick" buttonName="=" btnClass="operator" />
+    <Button :handleClick="handleClick" buttonName="AC" />
+    <Button :handleClick="handleClick" buttonName="+/-" />
+    <Button :handleClick="handleClick" buttonName="%" />
+    <Button :handleClick="handleClick" buttonName="÷" />
+    <Button :handleClick="handleClick" buttonName="7" />
+    <Button :handleClick="handleClick" buttonName="8" />
+    <Button :handleClick="handleClick" buttonName="9" />
+    <Button :handleClick="handleClick" buttonName="x" btnClass="operator" />
+    <Button :handleClick="handleClick" buttonName="4" />
+    <Button :handleClick="handleClick" buttonName="5" />
+    <Button :handleClick="handleClick" buttonName="6" />
+    <Button :handleClick="handleClick" buttonName="-" btnClass="operator" />
+    <Button :handleClick="handleClick" buttonName="1" />
+    <Button :handleClick="handleClick" buttonName="2" />
+    <Button :handleClick="handleClick" buttonName="3" />
+    <Button :handleClick="handleClick" buttonName="+" btnClass="operator" />
+    <Button :handleClick="handleClick" buttonName="0" btnClass="zero" />
+    <Button :handleClick="handleClick" buttonName="." />
+    <Button :handleClick="handleClick" buttonName="=" btnClass="operator" />
   </ul>
 </template>
 
 
-<script>
+<script setup>
+import { onMounted, onUpdated, ref } from 'vue';
 import calculate from '../logic/calculate'
 import Button from "./Button.vue";
 
-export default {
-  data() {
-    return {
-      calc: {
-        total: null,
-        next: null,
-        operation: null
-      }
-    }
-  },
-  mounted() {
-    this.calc.total = 0;
-  },
-  updated() {
-    if (this.calc.total === null && this.calc.next === null) {
-      this.calc.total = 0;
-    }
-  },
-  methods: {
-    handleClick(buttonName) {
-      this.calc = calculate(this.calc, buttonName);
-    }
-  },
-  components: {
-    Button
+let calc = ref({
+  total: null,
+  next: null,
+  operation: null
+});
+
+onMounted(() => {
+  calc.value.total = 0
+})
+
+onUpdated(() => {
+  if (calc.value.total === null && calc.value.next === null) {
+    calc.value.total = 0;
   }
+})
+
+const handleClick = (buttonName) => {
+  calc.value = calculate(calc.value, buttonName);
 }
 </script>
 
