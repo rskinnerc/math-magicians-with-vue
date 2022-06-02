@@ -53,7 +53,6 @@ const handleClick = (buttonName) => {
 <style>
 ul.calculator {
   display: flex;
-  width: 375px;
   flex-wrap: wrap;
 }
 

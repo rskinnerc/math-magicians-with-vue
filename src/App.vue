@@ -1,14 +1,13 @@
 <script setup>
-import Calculator from './components/Calculator.vue';
+import Navbar from './components/Navbar.vue';
 </script>
 
 <template>
-  <div class="App">
-    <Calculator />
+  <div className="bg-gradient-to-r from-sky-900 to-zinc-800 min-h-screen">
+    <Navbar />
+    <RouterView />
   </div>
 </template>
 
 <style>
-@import './assets/base.css';
-
 </style>
