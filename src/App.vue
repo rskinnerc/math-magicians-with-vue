@@ -10,5 +10,4 @@ import Calculator from './components/Calculator.vue';
 
 <style>
 @import './assets/base.css';
-
 </style>
